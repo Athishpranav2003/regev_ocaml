@@ -1,0 +1,4 @@
+(library
+ (name regev)
+ (modules Regev)
+ (libraries zarith mirage-crypto-rng mirage-crypto-pk))
