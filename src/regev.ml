@@ -56,9 +56,10 @@ let gen_public_key (priv_key:private_key) =
   done;
   {a; n; m; bound; q; range}
 
-let encrypt (public_key:public_key) msg =
-  let r = Array.init public_key.m (fun _ -> (Mirage_crypto_pk.Z_extra.gen Z.(~$2))) in
-
+let encrypt (public_key:public_key) msg ?r () =
+  let r = match r with
+    | Some r -> r
+    | None -> Array.init public_key.m (fun _ -> (Mirage_crypto_pk.Z_extra.gen Z.(~$2))) in
   let cipher = Array.make public_key.n Z.zero in
   cipher.(public_key.n-1) <- Z.(mul msg  (div public_key.q public_key.range));
   for i = 0 to public_key.n - 1 do
