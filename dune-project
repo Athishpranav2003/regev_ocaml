@@ -8,7 +8,6 @@
 
 (package
  (name regev)
- (allow_empty)
  (synopsis "Regev implementation OCaml")
  (description "Regev implementation OCaml")
 
